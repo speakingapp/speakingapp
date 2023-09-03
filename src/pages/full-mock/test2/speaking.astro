@@ -1,0 +1,227 @@
+---
+import MockLayout from '../../../layouts/MockLayout.astro'
+---
+
+<MockLayout title="Speaking Mock">
+
+    <ons-page>
+        <nav class="navbar">   
+   <div class=" ml-4 font-bold text-xl" style="color:rgb(252, 219, 34)">Mock Exams</div>
+   <svg id="exit-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 font-bold cursor-pointer text-orange-500 mr-3">
+     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+   </svg>
+      
+   </nav>    
+   <!---Alert--->
+   
+       <ons-alert-dialog id="dialog-1">
+     <div class="alert-dialog-content font-bold text-xl">
+       Are you sure to exit?
+     </div>
+     <div class="alert-dialog-footer">
+       <ons-alert-dialog-button id="false">Cancel</ons-alert-dialog-button>
+       <ons-alert-dialog-button id="true">Yes</ons-alert-dialog-button>
+     </div>
+   </ons-alert-dialog> 
+   
+           
+   <!----Mic Check Page---->
+   <main id="check-page" class="flex justify-center items-center flex-col mt-4">
+   <p class="font-bold text-center">Before we get started, let's test your microphone.</p>
+   <p class="text-center">It's important to make sure we can hear you clearly to mark your response.</p>    <div class=" my-7 bg-gray-300 border-8 border-gray-500 rounded-full flex justify-center items-center" style="width: 180px; height: 180px">
+   <svg id="mic_state" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-17 h-16 text-gray-500">
+     <path d="M8.25 4.5a3.75 3.75 0 117.5 0v8.25a3.75 3.75 0 11-7.5 0V4.5z" />
+     <path d="M6 10.5a.75.75 0 01.75.75v1.5a5.25 5.25 0 1010.5 0v-1.5a.75.75 0 011.5 0v1.5a6.751 6.751 0 01-6 6.709v2.291h3a.75.75 0 010 1.5h-7.5a.75.75 0 010-1.5h3v-2.291a6.751 6.751 0 01-6-6.709v-1.5A.75.75 0 016 10.5z" />
+   </svg>
+       
+   <!---Playicon-->    
+     <svg id="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-16 h-16 text-gray-500 cursor-pointer hidden">
+     <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+   </svg>
+   
+   
+   </div>
+       
+       <h4>Matnni o'qing!</h4>
+       <div class="px-4 flex items-center justify-center bg-gray-50 px-3 py-3 shadow">
+         <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-blue-400 mx-2">
+     <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+   </svg>
+           <p>Siz ertangi taqdirni hattoki dono bo‘lsangiz ham oldindan bila olmaysiz; shunday ekan, bugungi kunni bekor o‘tkazmang, zero u mudom qaytib kelmaydi</p>
+   </div>
+   
+       
+       <div class="flex items-center">
+           <button id="start-check" class="mx-2 my-4 px-5 py-2 bg-red-500 text-white rounded-xl cursor-pointer">Start Check</button>
+           <button id="stop-check" class="mx-2 my-4 px-5 py-2 bg-blue-500 text-white rounded-xl cursor-pointer hidden">Stop Mic</button>
+           <button id="start-exam" class="hidden mx-2 my-4 px-5 py-2 bg-emerald-400 text-white rounded-xl cursor-pointer" onclick="step0()">Start Exam</button>
+       </div>
+       
+   </main>        
+     <audio id="audio-playback"></audio>      
+   
+           
+   <!---Main Part--->        
+           
+           
+   <main id="main" class="quiz-bar hidden container mx-auto px-4">
+   
+   <div class="cols-2 my-5">
+       
+   <div class="font-bold">#Question <span id="que-id"></span></div>
+   <h3 id="quiz"></h3>   
+   </div> 
+       
+   <!-----right-side--->    
+   <div class="cols-2 my-2">
+       
+   <div id="clock-timer" class=" bg-gray-300 border-8 border-gray-500 rounded-full flex flex-col justify-center items-center">
+       
+   <svg id="attention" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-17 h-16 text-red-500">
+     <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+   </svg>
+       
+   <svg id="status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="hidden w-17 h-16 text-emerald-400">
+     <path d="M8.25 4.5a3.75 3.75 0 117.5 0v8.25a3.75 3.75 0 11-7.5 0V4.5z" />
+     <path d="M6 10.5a.75.75 0 01.75.75v1.5a5.25 5.25 0 1010.5 0v-1.5a.75.75 0 011.5 0v1.5a6.751 6.751 0 01-6 6.709v2.291h3a.75.75 0 010 1.5h-7.5a.75.75 0 010-1.5h3v-2.291a6.751 6.751 0 01-6-6.709v-1.5A.75.75 0 016 10.5z" />
+   </svg>
+       
+   <svg id="holdon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="hidden w-17 h-16 text-gray-500">
+     <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" />
+   </svg>
+   <p class="font-bold" id="timer"></p>    
+   </div>
+   
+       
+   </div>
+       
+   <footer class="footer flex justify-center items-center fixed bottom-0 left-0 w-full h-16 bg-gray-200">
+       <div id="progress_part1" class="flex justify-center items-center">
+       <div id="qui-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="qui-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="qui-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="qui-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="qui-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="qui-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       </div>
+       <!---Progress part2---->
+       <div id="progress_part2" class="hidden flex justify-center items-center">
+       <div id="quiz-progress-2" class="w-6 h-6 bg-blue-400 rounded-full border-2 border-gray-700"></div>
+       </div>    
+       <!---Progress part3---->
+       <div id="progress_part3" class="hidden flex justify-center items-center">
+       <div id="part3-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="part3-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="part3-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="part3-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       <div id="part3-progress" class="w-6 h-6 rounded-full border-2 border-gray-700"></div>
+       </div>    
+   </footer>    
+   </main>        
+           
+      
+           
+           
+   <!----Audios---->
+   <audio id="beep" src="/static/beep.mp3"></audio>  
+   <audio id="audio1" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart1%2F1.mp3?alt=media&token=24ec1af9-9a7c-4195-b6c4-eb549634c9cd"></audio>        
+   <audio id="audio2" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart1%2F2.mp3?alt=media&token=46b10b6a-80a7-4103-b988-e84d4facb8b5"></audio>  
+   <audio id="audio3" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart1%2F3.mp3?alt=media&token=b277c98c-b26a-4f99-b9f8-91f75e90fd80"></audio>
+   <audio id="audio4" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart1%2F4.mp3?alt=media&token=1f3559a3-09fd-41df-8034-0e14aac58b9b"></audio>  
+   <audio id="audio5" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart1%2F5.mp3?alt=media&token=3699f834-8bc1-4508-8369-1ba4c9b82b68"></audio>  
+   <audio id="audio6" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart1%2F6.mp3?alt=media&token=c84ac389-5c8c-4f6a-ab92-c2532409980d"></audio>  
+   <audio id="audio7" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart2%2Fintro.mp3?alt=media&token=d75b177a-affd-4faa-9094-df0129005fb1"></audio>  
+   <audio id="audio8" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart2%2F1.mp3?alt=media&token=4a153734-1ee2-4d59-9d3c-6dba74859596"></audio>  
+   <audio id="audio9" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart3%2Fintro.mp3?alt=media&token=e8859031-5039-4057-86fe-794f6c3113a3"></audio>  
+   <audio id="audio10" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart3%2F1.mp3?alt=media&token=5dfddddc-922d-40ae-aef5-e6dd80d4a9c2"></audio>  
+   <audio id="audio11" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart3%2F2.mp3?alt=media&token=3d9121ca-fea2-4293-9897-9d19d32e0cf6"></audio>  
+   <audio id="audio12" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart3%2F3.mp3?alt=media&token=378d868c-b31c-45d2-bdc2-4a02e29879fd"></audio>  
+   <audio id="audio13" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart3%2F4.mp3?alt=media&token=aade24fd-47e9-4410-9913-01210c4bd14f"></audio>  
+   <audio id="audio14" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart3%2F5.mp3?alt=media&token=b683b840-c5dd-4eac-a4c3-6d9f02436b91"></audio>
+   <audio id="audio15" src="https://firebasestorage.googleapis.com/v0/b/intrepid-honor-321018.appspot.com/o/test1%2Fpart3%2Fend.mp3?alt=media&token=0b0279db-05a7-4ca8-847b-830737f285c1"></audio>
+           
+   </ons-page>
+
+</MockLayout>
+
+<script is:inline src="/static/js/speak.js"></script>        
+           
+           <script is:inline>  
+               
+       //Recording checker
+       const preview =document.getElementById("audio-playback")        
+        let recorder, audio_stream;
+               
+   function startRecording() {
+     navigator.mediaDevices.getUserMedia({ audio: true })
+       .then(function (stream) {
+         audio_stream = stream;
+         recorder = new MediaRecorder(stream);
+   
+         // when there is data, compile into object for preview src
+         recorder.ondataavailable = function (e) {
+           const url = URL.createObjectURL(e.data);
+           preview.src = url;
+   // set link href as blob url, replaced instantly if re-recorded
+           
+             
+         };
+         recorder.start();
+   
+       });
+   }
+   
+   
+   function stopRecording() {
+       recorder.stop();
+     }            
+               
+               
+           $("#start-check").click(()=>{
+               startRecording()
+               $("#mic_state").addClass("text-red-500")
+               $("#mic_state").show()
+               $("#stop-check").show()
+               $("#start-check").hide()
+               $("#play").hide()
+           })
+               
+               
+           $("#stop-check").click(()=>{
+               stopRecording()
+               $("#mic_state").hide()
+               $("#play").show()
+               $("#stop-check").hide()
+               $("#start-check").show()
+               $("#start-exam").show()
+           })    
+               
+           $("#play").click(()=>{
+              preview.play()
+           })    
+               
+           $("#start-exam").click(()=>{
+               $("#check-page").hide()
+               preview.pause()
+               $("#main").show()
+           })    
+               
+           window.history.pushState(null, null, window.location.href);
+   window.onpopstate = function () {
+       window.history.go(2);
+   };        
+           
+       $("#exit-btn").click(()=>{
+     $("#dialog-1").show()  
+   })
+   
+   $("#false").click(()=>{
+       $("#dialog-1").hide() 
+   })
+   
+   
+   $("#true").click(()=>{
+       $("#dialog-1").hide()
+       window.location.href='/mock-test' 
+   })
+           </script>

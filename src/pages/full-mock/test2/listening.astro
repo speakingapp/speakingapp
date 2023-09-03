@@ -1,0 +1,177 @@
+---
+import MockLayout from '../../../layouts/MockLayout.astro'
+import Header from '../../../components/mockComponents/Header.astro'
+---
+
+<head>
+    <link rel="stylesheet"  href="/static/assets/audio/css/maudio.css">
+    <script src="/static/js/jquery.min.js" is:inline></script>
+</head>
+<style>
+        .tabbar{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+</style>
+
+
+<MockLayout title="Mock Exam">
+    <ons-page>
+   <Header/>
+   <div class="container mx-auto px-4">
+    <section class="audio-container">       
+      <audio src="https://xirurgabdukarim.uz/wp-content/uploads/2023/08/Listening-Mock-3-.mp3"></audio>
+    </section> 
+    
+    
+    <div style="height:29px" aria-hidden="true" class="wp-block-spacer"></div>
+    
+    <div id="part1" class="quiz-box"></div>        
+    <div id="part2" class="quiz-box hidden"></div>
+    <div id="part3" class="quiz-box hidden"></div>
+    <div id="part4" class="quiz-box hidden"></div>
+    <div id="part5" class="quiz-box hidden"></div>
+    <div id="part6" class="quiz-box hidden"></div>
+    
+    <div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+    
+    <div class="container mx-auto px-4 flex justify-end">  
+    <button class="btn btn-primary my-3 float-right" id="next-btn" onclick="nextPart()">Next Part</button>  
+    <div class="my-3 text-gray-600 font-bold bg-white py-2 px-4 w-full text-xl hidden" id="result"></div>    
+    </div> 
+    <div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>    
+        </div>            
+    </ons-page>
+</MockLayout>
+
+<script src="/static/assets/audio/js/maudio.js" is:inline></script>
+<script is:inline>
+        
+    var currentpart=0 
+    var prev=-1
+    var parts=document.querySelectorAll('.quiz-box')
+    
+    function nextPart(){
+        currentpart++
+        prev++
+        parts[prev].classList.add("hidden")
+        parts[currentpart].classList.remove("hidden")
+        if(currentpart===parts.length-1){
+            $("#next-btn").addClass("hidden")
+        }
+    }
+            
+    
+             
+            
+    
+    $("#part1").load("/static/source/test2/part1.html")
+    $("#part2").load("/static/source/test2/part2.html")
+    $("#part3").load("/static/source/test2/part3.html")
+    $("#part4").load("/static/source/test2/part4.html")        
+    $("#part5").load("/static/source/test2/part5.html")        
+    $("#part6").load("/static/source/test2/part6.html")
+            
+            
+        maudio({
+      obj: 'audio' // or jQuery selector
+    })
+     
+
+    $("#exit-btn").click(()=>{
+  $("#dialog-1").show()  
+})
+
+$("#false").click(()=>{
+    $("#dialog-1").hide() 
+})
+
+
+$("#true").click(()=>{
+    $("#dialog-1").hide()
+    window.location.href='/mock-test' 
+    
+})
+</script>
+
+
+
+<script is:inline>
+let score = 0;
+var ex, ex0, ex1, ex2, result;
+result=true
+
+       
+
+        
+    
+
+
+
+    function checkAnswers(){
+         $("#result").removeClass("hidden")
+         $("#checkbtn").hide()
+        //part 1
+        const questions = document.querySelectorAll('.question');
+        const userAnswers = [];
+
+        questions.forEach((question) => {
+            const selectedAnswer = question.querySelector('input[name]:checked');
+            if (selectedAnswer) {
+                userAnswers.push(selectedAnswer.value);
+            }
+        });
+
+        const correctAnswers = ["B", "C", "B", "A", "B", "A", "C"]; // Store the correct answers in an array
+
+        for (let i = 0; i < correctAnswers.length; i++) {
+            if (userAnswers[i] === correctAnswers[i]) {
+                score++;
+            }   
+        }
+
+//part 2-3-4
+        ex=['4', '46 wombat', 'thursday', '8.30', 'red', 'lunch', 'a', 'e', 'c', 'd', 'g', 'b', 'f', 'a', 'e'];
+				
+				for (var i=9; i<24; i++) 
+					{
+						ex0=document.getElementById("ex"+i);
+				if (ex0.value.trim().toLowerCase()!=ex[i-9])
+				{ result=false; 
+                }
+				else {
+				score++;}
+					}
+
+
+        //part 5
+
+			for (var i=24; i<30; i++) {
+					if (document.getElementById('a'+i).checked == true)	
+				{score++;}
+					else { result=false; }	
+				
+				}
+
+
+        //PART 6
+
+
+        ex1=['10 minutes', 'take time', 'ask clarification', 'salary', 'confident', 'appearance'];
+				
+				for (var i=30; i<36; i++) 
+					{
+						ex2=document.getElementById("ex"+i);
+				if (ex2.value.trim().toLowerCase()!=ex1[i-30])
+				{ result=false; 
+                }
+				else {
+				score++;}
+					}
+
+        const resultsDiv = document.getElementById("result");
+        resultsDiv.innerText = `Your score: ${score}/35`;
+    }
+</script>
