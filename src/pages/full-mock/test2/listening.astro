@@ -59,7 +59,7 @@ import Header from '../../../components/mockComponents/Header.astro'
         parts[prev].classList.add("hidden")
         parts[currentpart].classList.remove("hidden")
         if(currentpart===parts.length-1){
-            $("#next-btn").addClass("hidden")
+            $("#next-btn").hide()
         }
     }
             
