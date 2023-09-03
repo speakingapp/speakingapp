@@ -1,0 +1,51 @@
+---
+import { Picture } from "@astrojs/image/components";
+import heroImage from "assets/bg-3.png";
+import Link from "@components/ui/link.astro";
+import { Icon } from "astro-icon";
+---
+
+<main
+  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
+  <div class=" md:order-1 hidden md:block">
+    <Picture
+      src={heroImage}
+      alt="Girl who is larning English"
+      widths={[200, 500, 600]}
+      sizes="(max-width: 450px) 100vw, 400px"
+      loading="eager"
+      format="png"
+    />
+  </div>
+  <div>
+    <h1
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
+      SpeakingApp Platform
+    </h1>
+    <p class="text-lg mt-4 text-slate-600 max-w-xl">
+      <b>SpeakingApp</b> - Multilevel imtihoniga tayyorgarlik ko'ruvchilar uchun bepul onlayn platforma.<wbr /> Shungidek siz bizning ilovalarimizni ham yuklab olishingiz mumkin. Unda siz <span class="badge badge-success">Speaking</span> <span class="badge badge-warning">Writing</span> <span class="badge badge-secondary">Reading</span> va <span class="badge badge-primary">Listening</span> bo'yicha mashqlar bajarishingiz mumkin.
+    </p>
+    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+      <Link
+        href="#"
+        href="https://play.google.com/store/apps/details?id=vercel.multiexam.app&pli=1"
+        target="_blank"
+        class="flex gap-1 items-center justify-center"
+        rel="noopener">
+        <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" />
+
+        Yuklab olish
+      </Link>
+      <Link
+        size="lg"
+        style="outline"
+        rel="noopener"
+        href="https://t.me/multilevel_speakApp"
+        class="flex gap-1 items-center justify-center"
+        target="_blank">
+        <Icon class="text-black w-4 h-4" name="bx:bxl-telegram" />
+        Telegram kanal
+      </Link>
+    </div>
+  </div>
+</main>

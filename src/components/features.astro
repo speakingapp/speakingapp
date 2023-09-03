@@ -1,0 +1,63 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon";
+
+const features = [
+  {
+    title: "Bepul Mock Testlar",
+    description:
+      "Reading, Listening, Writing va Speaking Mock topshirish imkoniyati ",
+      icon:'bx:bxs-bolt'
+  },
+  {
+    title: "Writing",
+    description:
+      "Writing Task1 va Task2 ga oid foydali materiallar",
+    icon: "bx:bxs-pen",
+  },
+  {
+    title: "Kitob va qo'llanmalar",
+    description:
+      "Multilevelga oid bepul qo'llanma, paper-based mock materiallar",
+    icon: "bx:bxs-data",
+  },
+  {
+    title: "Reading",
+    description:
+      "Ko'plab reading mashqlari va testlari",
+    icon: "bx:bxs-book",
+  },
+  {
+    title: "Telegram kanal",
+    description:
+      "Bepul jonli darslar bo'ladigan telegram kanal",
+    icon: "bx:bxl-telegram",
+  },
+  
+];
+---
+
+<div class="mt-16 md:mt-0">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+   Biz sizga quyidagilarni taklif etamiz:
+  </h2>
+  <p class="text-lg mt-4 text-slate-600">
+    SpeakingApp - multillevel imtihoniga tayyorgarlik ko'rish uchun zamonaviy, bepul va samarali platforma.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+  {
+    features.map((item) => (
+      <div class="flex gap-4 items-start">
+        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
+          <Icon class="text-white" name={item.icon} />
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>
