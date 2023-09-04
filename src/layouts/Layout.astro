@@ -29,9 +29,11 @@ const makeTitle = title
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    <!-- Yandex.RTB -->
+     
+<!-- Yandex.RTB -->
 <script>window.yaContextCb=window.yaContextCb||[]</script>
 <script src="https://yandex.ru/ads/system/context.js" async></script>
+
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
@@ -61,6 +63,15 @@ const makeTitle = title
 	Ya.Context.AdvManager.render({
 		"blockId": "R-A-2860373-3",
 		"type": "topAd"
+	})
+})
+</script>
+<!-- Yandex.RTB R-A-2860373-4 -->
+<script>window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-2860373-4",
+		"type": "fullscreen",
+		"platform": "touch"
 	})
 })
 </script>
