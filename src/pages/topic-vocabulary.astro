@@ -5,7 +5,7 @@ import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
 
 
-let res = await fetch("https://xirurgabdukarim.uz/wp-json/wp/v2/speakingvocabulary")
+let res = await fetch("https://xirurgabdukarim.uz/wp-json/wp/v2/speakingvocabulary?per_page=100")
 let posts = await res.json();
 ---
 
