@@ -33,8 +33,6 @@ let posts = await res.json();
                     background="#ffffff"
                     fit="cover"
                     position="center"
-                    loading={index <= 2 ? "eager" : "lazy"}
-                    decoding={index <= 2 ? "sync" : "async"}
                     class="w-full rounded-md"
                   />
                   <div>
