@@ -4,13 +4,13 @@ import Container from "../../components/container.astro";
 
 const { slug } = Astro.params;
 
-let res = await fetch("https://xirurgabdukarim.uz/wp-json/wp/v2/speakingvocabulary?per_page=100&order=asc")
+let res = await fetch(`https://xirurgabdukarim.uz/wp-json/wp/v2/speakingvocabulary?slug=${slug}`)
 let [post] = await res.json();
 
 // The getStaticPaths() is required for static Astro sites.
 // If using SSR, you will not need this function.
 export async function getStaticPaths() {
-  let data = await fetch("https://xirurgabdukarim.uz/wp-json/wp/v2/speakingvocabulary?per_page=100&order=asc")
+  let data = await fetch("https://xirurgabdukarim.uz/wp-json/wp/v2/speakingvocabulary")
   let posts = await data.json();
 
   return posts.map((post) => ({
