@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+<style>
+    .box-content{
+      width: 80%;
+      margin: 20px 10%;
+    }
+   
+
+   
+  </style>
+
+<Layout title="Writing Letter Lessons">
+
+  </head>
+<body>
+
+<div class="drawer w-full" style="position:sticky; top:0;height: 60px; background-color: blue; display: flex; justify-content: flex-start; align-items: center; box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);">
+  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Page content here -->
+    <label for="my-drawer" style="margin: 0 20px; font-weight: bold; background-color:white; padding: 10px 15px; border-radius: 8px;">Open Menu
+</label>
+  </div> 
+
+
+  <div class="drawer-side">
+    <label for="my-drawer" class="drawer-overlay"></label>
+    <ul id="post-titles" class="menu p-4 min-h-full bg-base-100 text-base-content" style="width:250px; height: 100%;">
+      <!-- Sidebar content here -->
+    </ul>
+  </div>
+</div>
+ 
+  <main>
+    <div class="box-content  px-4 py-4 pt-5">
+    <p style="height:25px"></p>
+    <div id="main-content"></div>
+    <p style="height: 40px;"></p>
+  </div>
+  </main>
+
+
+<script is:inline>
+  // JavaScript to fetch post titles and populate the sidebar
+  fetch('https://xirurgabdukarim.uz/wp-json/wp/v2/writingtask1?per_page=100&order=asc')
+    .then(response => response.json())
+    .then(posts => {
+      const postTitles = document.getElementById('post-titles');
+      posts.forEach(post => {
+       let listItem = document.createElement('li');
+        var a = document.createElement("a")
+        a.textContent = post.title.rendered;
+        listItem.appendChild(a)
+        var mainContent = document.getElementById('main-content');
+        var title = document.createElement("h1")
+         title.textContent=post.title.rendered
+         title.classList.add("text-xl")
+         mainContent.appendChild(title)
+        listItem.addEventListener('click', () => loadMainPage(post.id));
+        postTitles.appendChild(listItem);
+
+      });
+
+      // Show the content of the first post on the main page by default
+      if (posts.length > 0) {
+        loadMainPage(posts[0].id);
+      }
+    });
+
+  function loadMainPage(postId) {
+    // Fetch the post content by ID and display it on the main page
+    fetch(`https://xirurgabdukarim.uz/wp-json/wp/v2/writingtask1/${postId}`)
+      .then(response => response.json())
+      .then(post => {
+        var mainContent = document.getElementById('main-content');
+        mainContent.innerHTML = post.content.rendered;
+        mainContent.classList.add("pt-3","pb-5")
+        
+      });
+  }
+
+
+ 
+</script>
+</Layout>
