@@ -32,8 +32,8 @@ const makeTitle = title
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js" is:inline></script>
     <script src="https://unpkg.com/jquery/dist/jquery.min.js" is:inline></script>
    <!-- Yandex.RTB -->
-<script>window.yaContextCb=window.yaContextCb||[]</script>
-<script src="https://yandex.ru/ads/system/context.js" async></script>
+<script is:inline>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async is:inline></script>
     <link rel="stylesheet" href="/static/css/main.css">
     <meta name="generator" content={Astro.generator} />
 
@@ -95,7 +95,7 @@ body::-webkit-scrollbar-thumb {
 
 <!-- Yandex.RTB R-A-2860373-1 -->
 <div id="yandex_rtb_R-A-2860373-1"></div>
-<script>window.yaContextCb.push(()=>{
+<script is:inline>window.yaContextCb.push(()=>{
 	Ya.Context.AdvManager.render({
 		"blockId": "R-A-2860373-1",
 		"renderTo": "yandex_rtb_R-A-2860373-1",
