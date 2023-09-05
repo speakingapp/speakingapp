@@ -2,7 +2,19 @@
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/container.astro";
 let res = await fetch("https://xirurgabdukarim.uz/wp-json/wp/v2/speakingvocabulary")
-let posts = await res.json();
+let [posts] = await res.json();
+
+// The getStaticPaths() is required for static Astro sites.
+// If using SSR, you will not need this function.
+export async function getStaticPaths() {
+  let data = await fetch("https://norian.studio/wp-json/wp/v2/dinos")
+  let posts = await data.json();
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post: post },
+  }));
+}
 ---
 <Layout title={post.title.rendered}>
    <Container>
