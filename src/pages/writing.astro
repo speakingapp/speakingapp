@@ -12,10 +12,6 @@ import Layout from '../layouts/Layout.astro'
   </style>
 
 <Layout title="Writing Letter Lessons">
-
-  </head>
-<body>
-
 <div class="drawer w-full" style="position:sticky; top:0;height: 60px; background-color: blue; display: flex; justify-content: flex-start; align-items: center; box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);">
   <input id="my-drawer" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content">
@@ -41,7 +37,7 @@ import Layout from '../layouts/Layout.astro'
   </div>
   </main>
 
-
+</Layout>
 <script is:inline>
   // JavaScript to fetch post titles and populate the sidebar
   fetch('https://xirurgabdukarim.uz/wp-json/wp/v2/writingtask1?per_page=100&order=asc')
@@ -84,4 +80,3 @@ import Layout from '../layouts/Layout.astro'
 
  
 </script>
-</Layout>
