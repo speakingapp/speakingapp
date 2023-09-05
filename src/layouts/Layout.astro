@@ -31,8 +31,8 @@ const makeTitle = title
     <meta name="generator" content={Astro.generator} />
      
 <!-- Yandex.RTB -->
-<script>window.yaContextCb=window.yaContextCb||[]</script>
-<script src="https://yandex.ru/ads/system/context.js" async></script>
+<script is:inline>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async is:inline></script>
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
@@ -59,13 +59,13 @@ const makeTitle = title
   </head>
   <body>
 <!-- Yandex.RTB R-A-2860373-3 -->
-<script>window.yaContextCb.push(()=>{
+<script is:inline>window.yaContextCb.push(()=>{
 	Ya.Context.AdvManager.render({
 		"blockId": "R-A-2860373-3",
 		"type": "topAd"
 	})
 })
-</script>
+</script is:inline>
 <!-- Yandex.RTB R-A-2860373-4 -->
 <script>window.yaContextCb.push(()=>{
 	Ya.Context.AdvManager.render({
@@ -80,7 +80,7 @@ const makeTitle = title
 
 <!-- Yandex.RTB R-A-2860373-1 -->
 <div id="yandex_rtb_R-A-2860373-1"></div>
-<script>window.yaContextCb.push(()=>{
+<script is:inline>window.yaContextCb.push(()=>{
 	Ya.Context.AdvManager.render({
 		"blockId": "R-A-2860373-1",
 		"renderTo": "yandex_rtb_R-A-2860373-1",
