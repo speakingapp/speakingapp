@@ -29,6 +29,9 @@ const makeTitle = title
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
+<!-- Yandex Native Ads -->
+<script is:inline>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async is:inline></script>
      
 <!-- Yandex.RTB -->
 <script is:inline>window.yaContextCb=window.yaContextCb||[]</script>
@@ -79,6 +82,14 @@ const makeTitle = title
 })
 </script>
     <Navbar />
+<!-- Yandex Native Ads C-A-2860373-6 -->
+<div id="yandex_rtb_C-A-2860373-6"></div>
+<script is:inline>window.yaContextCb.push(()=>{
+  Ya.Context.AdvManager.renderWidget({
+    renderTo: 'yandex_rtb_C-A-2860373-6',
+    blockId: 'C-A-2860373-6'
+  })
+})</script>
     <slot />
 
 
