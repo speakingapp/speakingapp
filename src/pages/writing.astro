@@ -120,13 +120,13 @@
   })
 
   $(".overlay").click(()=>{
-    $(".sidebar").removeClass('show') 
-    $(".overlay").css("display","none")
+    $(".sidebar").toggleClass('show') 
+    $(".overlay").toggleClass('show')
   })
 
   $("ons-list").click(()=>{
-    $(".sidebar").removeClass('show')
-    $(".overlay").css("display","none")
+    $(".sidebar").toggleClass('show')
+    $(".overlay").toggleClass('show')
   })
 </script>
 </body>
