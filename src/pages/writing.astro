@@ -115,17 +115,17 @@
 
   $("#handle-bar").click(()=>{
     $(".sidebar").toggleClass('show')
-    $(".overlay").toggle()
+    $(".overlay").toggleClass('show')
 
   })
 
   $(".overlay").click(()=>{
-    $(".sidebar").hide()
+    $(".sidebar").removeClass('show') 
     $(".overlay").css("display","none")
   })
 
   $("ons-list").click(()=>{
-    $(".sidebar").hide()
+    $(".sidebar").removeClass('show')
     $(".overlay").css("display","none")
   })
 </script>
